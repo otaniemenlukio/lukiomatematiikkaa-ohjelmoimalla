@@ -14278,7 +14278,7 @@ Matti Heikkinen</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="1-Johdanto">1 Johdanto<a class="anchor-link" href="#1-Johdanto">&#182;</a></h2><p>Tässä artikkelissa tarkastellaan miten lukujen jaollisuutta ja jakolaskun jakojäännöstä voidaan hyödyntää tiedon salaamisessa. Tiedon salaaminen eli kryptaus ja salatun viestin avaaminen ovat keskeinen osa turvallista ja luotettavaa viestintää nykyyhteiskunnassa.</p>
+<h2 id="1-Johdanto">1 Johdanto<a class="anchor-link" href="#1-Johdanto">&#182;</a></h2><p>Tässä artikkelissa tarkastellaan miten lukujen jaollisuutta ja jakolaskun jakojäännöstä voidaan hyödyntää tiedon salaamisessa. Tiedon salaaminen eli kryptaus ja salatun viestin avaaminen ovat keskeinen osa turvallista ja luotettavaa viestintää yhteiskunnassa.</p>
 <p>Kertaamme lukiomatematiikan lähtökodista mitä tarkoittavat lukuteorian käsitteet jakoyhtälö ja kongruenssi ja miten jakolaskun jakojäännös voidaan selvittää erilaisilla algoritmeilla. Tutustumme python -ohjelmointikielen avulla kahteen algoritmiin, joilla on erilainen tehokkuus ja aikavaatimus. Lisäksi esittelemme lyhyesti miten jaollisuuteen liittyviä ongelmia voidaan tutkia kvanttitietokoneissa suoritettavilla kvanttialgoritmeilla.</p>
 <p>Luvussa 1 kerrataan lukiomatematiikasta tutut jakoyhtälön ja kongruenssin käsitteet [1], joita tarvitset luvussa 4, missä käsitellään tiedon salaamiseen ja salatun tiedon avaamisen periaateitta RSA-algoritmin avulla. Luvussa 2 käsitellään erilaisia algoritmeja, joiden avulla voidaan tietokoneilla laskea suurten lukujen jakojäännöksiä,joihin tiedonsalauksessa käytettävät algoritmit perustuvat. Luvussa 3 esitellään lyhyesti Shorin algoritmi[4,5],jota voidaan käyttää kvanttitietokoneissa hyvin suurten lukujen jakolaskun jakojäännösten tutkimiseen. Tiedon salaamisen periaate eli RSA-algoritmi esitellään luvussa 4.</p>
 
@@ -15238,10 +15238,24 @@ Johdanto kvanttilaskentaan</a>-artikkelissa. Alla olevassa koodissa luodaan yhde
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>Kongruenssiyhtälön $a^r\ \left(mod\ N\right)\ \equiv1$ tutkimiseksi määriteltävässä kvanttipiirissä luku $a^r$ esitetään kahdeksan kubitin avulla [4, 5]. Kvanttipiirin tavoittena on etsiä kongruenssia esittävän tilavektorin jakso $r$, jonka jälkeen jakojäännöksen arvot alkavat toistaa itseään. Kongruenssia kuvaavan tilavektorin ominaistilat löydetään operoimalla tilavektoriin unitaarisella U-portilla, jonka vaikutuksesta kongruenssia kuvaava tilavektori siirtyy seuraavaa jakojäännöstä esittävään tilaan. Vertaa jakojäännösten arvoja yllä olevassa kuvaajassa siihen miten tilavektorin arvot muuttuvat U-portin vaikutuksesta. Kun U-portilla operoidaan  $r$ kertaa on menty koko jakso läpi ja palattu alkutilaan, jossa jakojäännös on pienin luku $\mid 1 &gt;$:</p>
-$$U\mid y&gt;\ \equiv\ \ \mid a_k\ mod\ N&gt;$$<p>,</p>
-$$U\mid1&gt;\ \equiv\ \ \mid3&gt;\$$$$ U\mid3&gt;\ \equiv\ U^2\mid1&gt;\ \equiv\ \ \mid9&gt;\$$$$U\mid 9&gt;\ \equiv\ \ \mid27&gt;\$$<p>Lisäksi kvanttipiirissä tarvitaan qubitti kuvaamaan seuraavan tilavektorin ominaistiloja $U\mid y&gt;\ =\ e^{\ \frac{2pi\cdot s\cdot i}{r}}\mid y&gt;\$.</p>
+$$ U\mid y&gt;\ \equiv\ \ \mid a_k\ mod\ N&gt;$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+$$ U\mid1&gt;\ \equiv\ \ \mid3&gt;$$$$ U\mid3&gt;\ \equiv\ U^2\mid1&gt;\ \equiv\ \ \mid9&gt;$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+$$ U\mid 9&gt;\ \equiv\ \ \mid27&gt;$$
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Lisäksi kvanttipiirissä tarvitaan qubitti kuvaamaan seuraavan tilavektorin ominaistiloja $U\mid y&gt;\ =\ e^{\ \frac{2pi\cdot s\cdot i}{r}}\mid y&gt;$.</p>
 <p>Huomaa, että jakso $r$ saadaan määritettyä U-portin ominaisarvon $e^{\ \frac{2pi\cdot s\cdot i}{r}}$  jakajasta. Tutkittavan kvanttisysteemin tilavektori on summa eli superpositio jakson $r$ sisältämien jakojäännöksiä esittävistä tilavektoreista, eli kongurenssitilojen superpositio voidaan esittää yhtälönä:</p>
-$$\mid y&gt;\ =\ \frac{1}{\sqrt{r}}\sum _{k=0}^{r-1}e^{-\frac{2pi\cdot s\cdot i\cdot k}{r}}\mid a^k\ mod\ N&gt;\ $$<p>Ennen qubitin tilojen mittausta kvanttipiirissä tehdään kannanvaihto fourier-muunnoksen avulla. Alla olevassa piirissä kantaluku $a=7$ ja $N=15$. Tavoitteena on löytää jakolaskun $7^r : 15$ jakso $r$.</p>
+$$\mid y&gt;\ =\ \frac{1}{\sqrt{r}}\sum _{k=0}^{r-1}e^{-\frac{2pi\cdot s\cdot i\cdot k}{r}}\mid a^k\ mod\ N&gt;$$<p>Ennen qubitin tilojen mittausta kvanttipiirissä tehdään kannanvaihto fourier-muunnoksen avulla. Alla olevassa piirissä kantaluku $a=7$ ja $N=15$. Tavoitteena on löytää jakolaskun $7^r : 15$ jakso $r$.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -15663,7 +15677,7 @@ Corresponding Phase: 0.750000
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Seuraavassa luvussa 4 tarkastelemme miten RSA-salausalgoritmissa muodostetaan viestin salaamisessa tarvittavat julkinen ja yksityinen avain jakolaskun $a^r :N$ jakojäännöksestä.</p>
+<p>Seuraavassa luvussa 4 tarkastelemme miten RSA-salausalgoritmissa muodostetaan viestin salaamisessa tarvittavat julkinen ja yksityinen avain jakolaskun $a^r :N$ jakojäännöksestä. Jakaja $N$ on osa julkista ja yksityistä avainta. Esimerkissä löydettiin kvanttialgoritmilla avaimen osan $N$ tulontekijät, jolloin salauksen purkaminen eli yksityisen avaimen löytäminen on mahdollista.</p>
 
 </div>
 </div>
