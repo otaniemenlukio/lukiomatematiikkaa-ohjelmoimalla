@@ -13971,20 +13971,20 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Lukujen-esitt%C3%A4minen-10--ja-2-j%C3%A4rjestelm%C3%A4ss%C3%A4,-muunnosalgoritmeja-lukuj%C3%A4rjestelmien-v%C3%A4lill%C3%A4-sek%C3%A4-kvanttilotto">Lukujen esitt&#228;minen 10- ja 2-j&#228;rjestelm&#228;ss&#228;, muunnosalgoritmeja lukuj&#228;rjestelmien v&#228;lill&#228; sek&#228; kvanttilotto<a class="anchor-link" href="#Lukujen-esitt%C3%A4minen-10--ja-2-j%C3%A4rjestelm%C3%A4ss%C3%A4,-muunnosalgoritmeja-lukuj%C3%A4rjestelmien-v%C3%A4lill%C3%A4-sek%C3%A4-kvanttilotto">&#182;</a></h1><p>Tässä artikkelissa kerrataan lukiomatematiikan lähtökohdista binäärijärjestelmän perusteet, ja esitellään lyhyesti algoritmeja miten luvun muuntaminen 10-järjestelmän ja binäärijärjestelmän välillä voidaan laskea. Ohjelmointiesimerkit on tehty pythonilla. Ohjelmointiesimerkit toteuttavat samat ideat mitä laskuesimerkeissä havainnollistetaan. Esimerkkien avulla on tarkoitus tukea algoritmisen ajattelun kehittymistä lukiossa.</p>
+<h1 id="Lukujen-esitt%C3%A4minen-desimaali--ja-bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4ss%C3%A4,-muunnosalgoritmeja-lukuj%C3%A4rjestelmien-v%C3%A4lill%C3%A4-sek%C3%A4-kvanttilotto">Lukujen esitt&#228;minen desimaali- ja bin&#228;&#228;rij&#228;rjestelm&#228;ss&#228;, muunnosalgoritmeja lukuj&#228;rjestelmien v&#228;lill&#228; sek&#228; kvanttilotto<a class="anchor-link" href="#Lukujen-esitt%C3%A4minen-desimaali--ja-bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4ss%C3%A4,-muunnosalgoritmeja-lukuj%C3%A4rjestelmien-v%C3%A4lill%C3%A4-sek%C3%A4-kvanttilotto">&#182;</a></h1><p>Tässä artikkelissa kerrataan lukiomatematiikan lähtökohdista binäärijärjestelmän perusteet, ja esitellään lyhyesti algoritmeja miten luvun muuntaminen desimaalijärjestelmän ja binäärijärjestelmän välillä voidaan laskea. Ohjelmointiesimerkit on tehty pythonilla. Ohjelmointiesimerkit toteuttavat samat ideat mitä laskuesimerkeissä havainnollistetaan. Esimerkkien avulla on tarkoitus tukea algoritmisen ajattelun kehittymistä lukiossa.</p>
 <p>Artikkelin lopussa esitellään lyhyesti kvanttitietokoneille tehty algoritmi, jossa binäärilukuesityksen avulla arvotaan kvanttitietokoneella lottonumerot väliltä 1- 40. Kvanttialgoritmin ohjelmointi sisältää vaikeampia tietorakenteita.</p>
-<h2 id="Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4ss%C3%A4-kantaluku-on-kaksi">Bin&#228;&#228;rij&#228;rjestelm&#228;ss&#228; kantaluku on kaksi<a class="anchor-link" href="#Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4ss%C3%A4-kantaluku-on-kaksi">&#182;</a></h2><p>Tavallisessa 10-järjestelmässä luvut esitetään kantaluvun $10$ potenssien avulla. Luvun esittämisessä käytettyjen numeroiden $0,1,2 ... 9$ paikka ilmaisee ykkösten, kymppien satojen... eli kantaluvun 10 potenssien lukumäärän. Esimerkiksi 10-järjestelmän luku $245$ voidaan hajoittaa muotoon:</p>
+<h2 id="Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4ss%C3%A4-kantaluku-on-kaksi">Bin&#228;&#228;rij&#228;rjestelm&#228;ss&#228; kantaluku on kaksi<a class="anchor-link" href="#Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4ss%C3%A4-kantaluku-on-kaksi">&#182;</a></h2><p>Tavallisessa desimaalijärjestelmässä luvut esitetään kantaluvun $10$ potenssien avulla. Luvun esittämisessä käytettyjen numeroiden $0,1,2 ... 9$ paikka ilmaisee ykkösten, kymppien satojen... eli kantaluvun 10 potenssien lukumäärän. Esimerkiksi desimaalijärjestelmän luku $245$ voidaan hajoittaa muotoon:</p>
 <p>$$ 245= 2\cdot 100+ 4 \cdot 10 + 5\cdot 1 = 2\cdot 10^2 + 4\cdot 10^1 + 5\cdot 10^0$$</p>
-<p>Binäärijärjestelmän kantaluku on $2$. Binääriluvussa bitin $0$ tai $1$ paikka ilmaisee mikä kantaluvun $2$ potenssi on kysessä. Esimerkiksi 10-järjestelmän luku $11_{10}$ saa binäärijärjestelmässä esitysmuodon $1011_2$ , koska</p>
+<p>Binäärijärjestelmän kantaluku on $2$. Binääriluvussa bitin $0$ tai $1$ paikka ilmaisee mikä kantaluvun $2$ potenssi on kysessä. Esimerkiksi desimaalijärjestelmän luku $11_{10}$ saa binäärijärjestelmässä esitysmuodon $1011_2$ , koska</p>
 <p>$$11_{10} = 8+2+1 = 1 \cdot 2^3+0 \cdot 2^2 +1\cdot 2^1+1\cdot 2^0 = 1011_2$$</p>
-<p>Esimerkiksi binääriluku $11001_2$ voidaan muuttaa 10-järjestelmän luvuksi seuraavalla algortimilla:</p>
+<p>Esimerkiksi binääriluku $11001_2$ voidaan muuttaa desimaalijärjestelmän luvuksi seuraavalla algortimilla:</p>
 <p>$$11001_2 = 1\cdot 2^4+ 1\cdot 2^3+0\cdot 2^2+0\cdot 2^1+1\cdot 2^0=16+8+1 = 25_{10}$$</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Muunnokset-bin%C3%A4%C3%A4riesityksen-ja-10-j%C3%A4rjestelm%C3%A4n-v%C3%A4lill%C3%A4-pythonissa">Muunnokset bin&#228;&#228;riesityksen ja 10-j&#228;rjestelm&#228;n v&#228;lill&#228; pythonissa<a class="anchor-link" href="#Muunnokset-bin%C3%A4%C3%A4riesityksen-ja-10-j%C3%A4rjestelm%C3%A4n-v%C3%A4lill%C3%A4-pythonissa">&#182;</a></h3><p>Tietokoneiden muistissa kaikki digitaalinen informaatio esitetään bittien avulla, bitin tila voi olla joko  $0$ tai $1$. Python-ohjelmointikielessä 10-järjestelmän luvun voi muuttaa binääriluvuksi komennolla <code>bin(kokonaisluku)</code>. Vastaavasti binääriluvun voi muuttaa 10-järjestelmään komennolla <code>int(binääriluku,2)</code>. Funktion  2.parametrina annettu luku $2$ ilmaisee, että 1.parametri on binääriluku. Pythonissa etuliite <code>0b</code> ilmaisee, että kyseessä on binääriluku. Tällöin esimerkiksi <code>print</code>-komento tunnistaa binääriluvun, ja antaa tulosteen 10-järjestelmässä. Esimerkkejä:</p>
+<h3 id="Muunnokset-bin%C3%A4%C3%A4riesityksen-ja-desimaalij%C3%A4rjestelm%C3%A4n-v%C3%A4lill%C3%A4-pythonissa">Muunnokset bin&#228;&#228;riesityksen ja desimaalij&#228;rjestelm&#228;n v&#228;lill&#228; pythonissa<a class="anchor-link" href="#Muunnokset-bin%C3%A4%C3%A4riesityksen-ja-desimaalij%C3%A4rjestelm%C3%A4n-v%C3%A4lill%C3%A4-pythonissa">&#182;</a></h3><p>Tietokoneiden muistissa kaikki digitaalinen informaatio esitetään bittien avulla, bitin tila voi olla joko  $0$ tai $1$. Python-ohjelmointikielessä desimaalijärjestelmän luvun voi muuttaa binääriluvuksi komennolla <code>bin(kokonaisluku)</code>. Vastaavasti binääriluvun voi muuttaa desimaalijärjestelmään komennolla <code>int(binääriluku,2)</code>. Funktion  2.parametrina annettu luku $2$ ilmaisee, että 1.parametri on binääriluku. Pythonissa etuliite <code>0b</code> ilmaisee, että kyseessä on binääriluku. Tällöin esimerkiksi <code>print</code>-komento tunnistaa binääriluvun, ja antaa tulosteen desimaalijärjestelmässä. Esimerkkejä:</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -13993,7 +13993,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Tulostetaan binääriluku 11010 eli 10-järjestelmän luku 26</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Tulostetaan binääriluku 11010 eli desimaalijärjestelmän luku 26</span>
 <span class="nb">print</span><span class="p">(</span><span class="mb">0b11010</span><span class="p">)</span>
 </pre></div>
 
@@ -14029,7 +14029,45 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Annetaan alkuarvo muuttujalle a 10-järjestelmässä ja muutetaan luku binääriluvuksi</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># tai binääriliteraali</span>
+<span class="mb">0b11010</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>26</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Annetaan alkuarvo muuttujalle a desimaalijärjestelmässä ja muutetaan luku binääriluvuksi</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">26</span>
 <span class="n">b</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
@@ -14071,7 +14109,7 @@ a.anchor-link {
 <span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;0b11010&quot;</span> <span class="c1"># nyt muuttuja b on merkkijono eli string-tyyppiä</span>
 <span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
-<span class="c1"># 10-järjestelmän luvulla voi laskea</span>
+<span class="c1"># desimaalijärjestelmän luvulla voi laskea</span>
 <span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
@@ -14105,7 +14143,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Algoritmeja-lukuj%C3%A4rjestelm%C3%A4st%C3%A4-toiseen-siirtymiseksi">Algoritmeja lukuj&#228;rjestelm&#228;st&#228; toiseen siirtymiseksi<a class="anchor-link" href="#Algoritmeja-lukuj%C3%A4rjestelm%C3%A4st%C3%A4-toiseen-siirtymiseksi">&#182;</a></h3><h4 id="Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4st%C3%A4-10-j%C3%A4rjestelm%C3%A4%C3%A4n">Bin&#228;&#228;rij&#228;rjestelm&#228;st&#228; 10-j&#228;rjestelm&#228;&#228;n<a class="anchor-link" href="#Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4st%C3%A4-10-j%C3%A4rjestelm%C3%A4%C3%A4n">&#182;</a></h4><p>Seuravaaksi esitellään miten binääriluku $b$ voidaan laskemalla muuttaa 10-järjestelmän luvuksi $a$ kahdella erilaisella algoritmilla.</p>
+<h3 id="Algoritmeja-lukuj%C3%A4rjestelm%C3%A4st%C3%A4-toiseen-siirtymiseksi">Algoritmeja lukuj&#228;rjestelm&#228;st&#228; toiseen siirtymiseksi<a class="anchor-link" href="#Algoritmeja-lukuj%C3%A4rjestelm%C3%A4st%C3%A4-toiseen-siirtymiseksi">&#182;</a></h3><h4 id="Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4st%C3%A4-desimaalij%C3%A4rjestelm%C3%A4%C3%A4n">Bin&#228;&#228;rij&#228;rjestelm&#228;st&#228; desimaalij&#228;rjestelm&#228;&#228;n<a class="anchor-link" href="#Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4st%C3%A4-desimaalij%C3%A4rjestelm%C3%A4%C3%A4n">&#182;</a></h4><p>Seuravaaksi esitellään miten binääriluku $b$ voidaan laskemalla muuttaa desimaalijärjestelmän luvuksi $a$ kahdella erilaisella algoritmilla.</p>
 <p><em>Menetelmässä 1</em> eli suorassa laskussa binääriluvun bitit $0$ ja $1$ antavat kertoimet kantaluvun $2$ eri potensseille:</p>
 $$10111_2= 1\cdot 2^4 +0\cdot 2^3+ 1\cdot 2^2+1\cdot 2^1+1\cdot 2^0 = 16+0+4+2+1 =23_{10}$$<p>Alla esimerkissä suora laskumenetelmä pythonilla toteutettuna kun binäärilkuku $b$ annetaan aluksi merkkijonona (esim. $0b11010$). Pythonissa potenssi ilmaistaan operaattorilla <code>**</code>. Kun binääriluku on merkkijono, sen sisältämiä bittejä voidaan indeksoida kuin listan alkioita välillä $0 ...len(b)-1$, missä funktion <code>len(b)</code> palauttama arvo ilmaisee merkkijonon pituuden. Esimerkiksi <code>b</code> kirjain on merkkijonossa <code>0b11010</code> indeksoitu luvulla 1 ja ykkösten määrän ilmaiseva bitti $0$ indeksin arvolla 6. Nämä merkit saadaan listasta <code>b[]</code> komeinnoilla <code>b[1]</code> ja <code>b[6]</code>. Merkkijonon bitit muunnetaan kokoknaisluvuiksi <code>int()</code> -funktiolla. Kun merkkijono tulkitaan listaksi <code>b[]</code>, sen alkioita voidaan käydä läpi <code>for</code>-silmukassa.</p>
 
@@ -14113,7 +14151,7 @@ $$10111_2= 1\cdot 2^4 +0\cdot 2^3+ 1\cdot 2^2+1\cdot 2^1+1\cdot 2^0 = 16+0+4+2+1
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Johdantoesimerkki</span>
@@ -14121,18 +14159,17 @@ $$10111_2= 1\cdot 2^4 +0\cdot 2^3+ 1\cdot 2^2+1\cdot 2^1+1\cdot 2^0 = 16+0+4+2+1
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Merkkijonon pituus: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Merkkijonon 2.merkki: &quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ykkösten määrän ilmaiseva bitti: &quot;</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># sama kuin b[6]</span>
-<span class="c1"># Muunnetaan binääriluku b 10-järjestelmän luvuksi</span>
-<span class="c1"># 10-järjestelmän luvun alkuarvo</span>
+<span class="c1"># Muunnetaan binääriluku b desimaalijärjestelmän luvuksi</span>
+<span class="c1"># desimaalijärjestelmän luvun alkuarvo</span>
 <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="c1"># luvun k avulla lasketaan kantaluvun 2 potenssit 2^k, potenssi on pythonissa operaattori **.</span>
-<span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># luvun (len(b)-i-1) avulla lasketaan kantaluvun 2 potenssit, joka on pythonissa operaattori **.</span>
 <span class="c1"># merkkijono b käydään läpi takaperin viimeisestä alkiosta (ensimmäisestä bitistä) 0 oikealta vasemmalle.</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1"># voit kommentoida tämän pois</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="n">k</span>
-    <span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;binääriluku b 10-järjestelmässä: &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>    
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;binääriluku b desimaalijärjestelmässä: &quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>    
 </pre></div>
 
      </div>
@@ -14160,7 +14197,60 @@ Ykkösten määrän ilmaiseva bitti:  0
 0
 1
 1
-binääriluku b 10-järjestelmässä:  26
+binääriluku b desimaalijärjestelmässä:  26
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Tapa 2:</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;0b11010&quot;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#leikataan 0b merkkijonosta</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> 
+<span class="n">bitlist</span> <span class="o">=</span><span class="p">[]</span> <span class="c1"># tyhjä lista </span>
+<span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+    <span class="n">bitlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span> <span class="c1">#lisätään merkkijonon alkiot listaaan</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bitlist</span><span class="p">)</span>
+<span class="n">bitlist</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="c1"># käännetään bittien järjestys laskemista varten</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bitlist</span><span class="p">)</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bitlist</span><span class="p">)):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">bitlist</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;binääriluku desimaalilukuna: &quot;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>11010
+[&#39;1&#39;, &#39;1&#39;, &#39;0&#39;, &#39;1&#39;, &#39;0&#39;]
+[&#39;0&#39;, &#39;1&#39;, &#39;0&#39;, &#39;1&#39;, &#39;1&#39;]
+binääriluku desimaalilukuna:  26
 </pre>
 </div>
 </div>
@@ -14172,35 +14262,35 @@ binääriluku b 10-järjestelmässä:  26
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4st%C3%A4-10-j%C3%A4rjestelm%C3%A4%C3%A4n">Bin&#228;&#228;rij&#228;rjestelm&#228;st&#228; 10-j&#228;rjestelm&#228;&#228;n<a class="anchor-link" href="#Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4st%C3%A4-10-j%C3%A4rjestelm%C3%A4%C3%A4n">&#182;</a></h4><p><em>Menetelmässä 2</em> binäääriluku $10111_2$ tulkitaan 10-järjestelmän luvuksi ja lasketaan jakojäännöksiä kun luku jaetaan luvulla $10$. Jos jakojäännös tietyn bitin kohdalla on $1$, lisätään 10-järjestelmän lukuun tätä bittiä vastaava kantaluvun $2$ potenssi. Kokonaisjakoa käyttämällä piennennetäään lukua kunnes luku on nolla. Muunnetaan binääriluku $10111_2$ 10-järjestelmän luvuksi a yllä kuvatun algoritmin mukaisesti:</p>
-<p>Alustus: 10-järjestelmän luvun $a$ alkuarvo $a=0$.</p>
-<p>1.kierros: Kun luku $10111_{10}$ jaetaan luvulla $10$, niin jakojäännös on $1$, eli 10-järjestelmän lukuun $a=0$ lisätään $a = 1\cdot 2^0$. Suoritetaan kokonaisjako $10111 : 10 = 1011$.</p>
-<p>2.kierros: Kun luku $1011_{10}$ jaetaan luvulla $10$, niin jakojäännös on $1$, eli 10-järjestelmän lukuun $a=1$ lisätään luku $a = 1+ 1\cdot 2^1= 3$. Suoritetaan kokonaisjako $1011 : 10 = 101$.</p>
-<p>3.kierros: Kun luku $101_{10}$ jaetaan luvulla $10$, niin jakojäännös on $1$, eli 10-järjestelmän lukuun $a=3$ lisätään luku $a = 3+ 1\cdot 2^2= 3+4=7$. Suoritetaan kokonaisjako $101 : 10 = 10$.</p>
-<p>4.kierros: Kun luku $10_{10}$ jaetaan luvulla $10$, niin jakojäännös on $0$, eli 10-järjestelmän lukuun $a=7$ lisätään luku $a = 7+ 0\cdot 2^2= 7$. Suoritetaan kokonaisjako $10 : 10 = 1$.</p>
-<p>5.kierros: Kun luku $1_{10}$ jaetaan luvulla $10$, niin jakojäännös on $1$, eli 10-järjestelmän lukuun $a=7$ lisätään luku $a = 7+ 1\cdot 2^4= 7 +16 = 23$. Suoritetaan kokonaisjako $1 : 10 = 0$. Algoritmin suoritus loppuu, koska kokonaisjaossa päädyttiin lukuun $0$.</p>
+<h4 id="Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4st%C3%A4-desimaalij%C3%A4rjestelm%C3%A4%C3%A4n">Bin&#228;&#228;rij&#228;rjestelm&#228;st&#228; desimaalij&#228;rjestelm&#228;&#228;n<a class="anchor-link" href="#Bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4st%C3%A4-desimaalij%C3%A4rjestelm%C3%A4%C3%A4n">&#182;</a></h4><p><em>Menetelmässä 2</em> binäääriluku $10111_2$ tulkitaan desimaalijärjestelmän luvuksi ja lasketaan jakojäännöksiä kun luku jaetaan luvulla $10$. Jos jakojäännös tietyn bitin kohdalla on $1$, lisätään desimaalijärjestelmän lukuun tätä bittiä vastaava kantaluvun $2$ potenssi. Kokonaisjakoa käyttämällä piennennetäään lukua kunnes luku on nolla. Muunnetaan binääriluku $10111_2$ desimaalijärjestelmän luvuksi a yllä kuvatun algoritmin mukaisesti:</p>
+<p>Alustus: desimaalijärjestelmän luvun $a$ alkuarvo $a=0$.</p>
+<p>1.kierros: Kun luku $10111_{10}$ jaetaan luvulla $10$, niin jakojäännös on $1$, eli desimaalijärjestelmän lukuun $a=0$ lisätään $a = 1\cdot 2^0$. Suoritetaan kokonaisjako $10111 : 10 = 1011$.</p>
+<p>2.kierros: Kun luku $1011_{10}$ jaetaan luvulla $10$, niin jakojäännös on $1$, eli desimaalijärjestelmän lukuun $a=1$ lisätään luku $a = 1+ 1\cdot 2^1= 3$. Suoritetaan kokonaisjako $1011 : 10 = 101$.</p>
+<p>3.kierros: Kun luku $101_{10}$ jaetaan luvulla $10$, niin jakojäännös on $1$, eli desimaalijärjestelmän lukuun $a=3$ lisätään luku $a = 3+ 1\cdot 2^2= 3+4=7$. Suoritetaan kokonaisjako $101 : 10 = 10$.</p>
+<p>4.kierros: Kun luku $10_{10}$ jaetaan luvulla $10$, niin jakojäännös on $0$, eli desimaalijärjestelmän lukuun $a=7$ lisätään luku $a = 7+ 0\cdot 2^2= 7$. Suoritetaan kokonaisjako $10 : 10 = 1$.</p>
+<p>5.kierros: Kun luku $1_{10}$ jaetaan luvulla $10$, niin jakojäännös on $1$, eli desimaalijärjestelmän lukuun $a=7$ lisätään luku $a = 7+ 1\cdot 2^4= 7 +16 = 23$. Suoritetaan kokonaisjako $1 : 10 = 0$. Algoritmin suoritus loppuu, koska kokonaisjaossa päädyttiin lukuun $0$.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Ohjelmoidaan pythonilla yllä esitetty algoritmi, jolla binääriluku muutetaan kymmenjärjestelmään.  Pythonissa operaattori <code>%</code> tarkoittaa jakojäännöksen laskemista, ja operaattori <code>//</code> kokonaisjakoa. Esimerkiksi operaatio <code>7 % 2</code> antaa tulokseksi <code>1</code> ja lasku <code>7 // 2</code> on <code>3</code>. Määritellään funktio <code>binToInt(b)</code>, joka muuttaa syötteenä samaamansa binääriluvun <code>b</code> 10-järjestelmän luvuksi. Kutsutaan tämän jälkeen funktiota <code>binToInt</code> ja muutetaan binääriluku $11010_2$ 10-järjestelmän luvuksi $26$.</p>
+<p>Ohjelmoidaan pythonilla yllä esitetty algoritmi, jolla binääriluku muutetaan kymmenjärjestelmään.  Pythonissa operaattori <code>%</code> tarkoittaa jakojäännöksen laskemista, ja operaattori <code>//</code> kokonaisjakoa. Esimerkiksi operaatio <code>7 % 2</code> antaa tulokseksi <code>1</code> ja lasku <code>7 // 2</code> on <code>3</code>. Määritellään funktio <code>binToInt(b)</code>, joka muuttaa syötteenä samaamansa binääriluvun <code>b</code> desimaalijärjestelmän luvuksi. Kutsutaan tämän jälkeen funktiota <code>binToInt</code> ja muutetaan binääriluku $11010_2$ desimaalijärjestelmän luvuksi $26$.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">binToInt</span><span class="p">(</span><span class="n">b</span><span class="p">):</span> <span class="c1"># anna syötteenä parametri eli binääriluku b ilman 0b-etuliitettä.</span>
-    <span class="c1"># a on kokonaisluku 10-järjestelmässä</span>
+    <span class="c1"># a on kokonaisluku desimaalijärjestelmässä</span>
     <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="c1">#indeksi i</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> 
     <span class="k">while</span> <span class="n">b</span> <span class="o">!=</span><span class="mi">0</span><span class="p">:</span>
-        <span class="n">bit</span> <span class="o">=</span> <span class="n">b</span> <span class="o">%</span> <span class="mi">10</span> <span class="c1"># jakojäännös on 0 tai 1</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">bit</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">b</span> <span class="o">%</span> <span class="mi">10</span> <span class="c1"># jakojäännös r on 0 tai 1</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span>
         <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">//</span> <span class="mi">10</span>  <span class="c1"># kokonaisjako luvulla 10</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># jos et halua suorituksen aikaisia välitulosteita, kommentoi tämä rivi pois.</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span><span class="mi">1</span>
@@ -14216,7 +14306,7 @@ binääriluku b 10-järjestelmässä:  26
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># kutsutaan funktiota binToInt()</span>
@@ -14252,7 +14342,7 @@ binääriluku b 10-järjestelmässä:  26
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
 
@@ -14270,14 +14360,14 @@ binääriluku b 10-järjestelmässä:  26
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h4 id="10-j%C3%A4rjestelm%C3%A4st%C3%A4-bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4%C3%A4n">10-j&#228;rjestelm&#228;st&#228; bin&#228;&#228;rij&#228;rjestelm&#228;&#228;n<a class="anchor-link" href="#10-j%C3%A4rjestelm%C3%A4st%C3%A4-bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4%C3%A4n">&#182;</a></h4><p>Seuravaaksi esitellään algoritmi miten 10-järjestelmän luku $a$ muutetaan binääriluvuksi $b$. Binääriluvun alkuarvoksi asetetaan nolla, eli $b =0$. Menetelmässä tutkitaan jakojäännöksiä kun 10-järjestelmän luku jaetaan binäärijärjestelmän kantaluvulla $2$. Jakojäännös $0$ tai $1$ lisätään binäärilukuun siihen kohtaan, minkä kantaluvun $10$ potenssi ilmaisee.  Muutetaan esimerkkinä luku $23_{10}$ binääriluvuksi $b$:</p>
+<h4 id="desimaalij%C3%A4rjestelm%C3%A4st%C3%A4-bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4%C3%A4n">desimaalij&#228;rjestelm&#228;st&#228; bin&#228;&#228;rij&#228;rjestelm&#228;&#228;n<a class="anchor-link" href="#desimaalij%C3%A4rjestelm%C3%A4st%C3%A4-bin%C3%A4%C3%A4rij%C3%A4rjestelm%C3%A4%C3%A4n">&#182;</a></h4><p>Seuravaaksi esitellään algoritmi miten desimaalijärjestelmän luku $a$ muutetaan binääriluvuksi $b$. Binääriluvun alkuarvoksi asetetaan nolla, eli $b =0$. Menetelmässä tutkitaan jakojäännöksiä kun desimaalijärjestelmän luku jaetaan binäärijärjestelmän kantaluvulla $2$. Jakojäännös $0$ tai $1$ lisätään binäärilukuun siihen kohtaan, minkä kantaluvun $10$ potenssi ilmaisee.  Muutetaan esimerkkinä luku $23_{10}$ binääriluvuksi $b$:</p>
 <p>Alkuaskel $b =0_2$.</p>
 <p>1.kierros: Kun luku $23_{10}$ jaetaan luvulla $2$, niin jakojäännös on $1$, eli lisätään bitti binääärilukuun $b=0 + 1\cdot 10^0 = 1_2$. Suoritetaan kokonaisjako $23 : 2 = 11_{10}$.</p>
 <p>2.kierros: Kun luku $11_{10}$ jaetaan luvulla $2$, niin jakojäännös on $1$, eli lisätään bitti binääärilukuun $b=1 + 1\cdot 10^1 = 11_2$. Suoritetaan kokonaisjako $11 : 2 = 5_{10}$.</p>
 <p>3.kierros: Kun luku $5_{10}$ jaetaan luvulla $2$, niin jakojäännös on $1$, eli lisätään bitti binääärilukuun $b=11 + 1\cdot 10^2 = 111_2$. Suoritetaan kokonaisjako $5 : 2 = 2_{10}$.</p>
 <p>4.kierros: Kun luku $2_{10}$ jaetaan luvulla $2$, niin jakojäännös on $0$, eli lisätään bitti binääärilukuun $b=111 + 0\cdot 10^3 = 0111_2$. Suoritetaan kokonaisjako $2 : 2 = 1_{10}$.</p>
 <p>5.kierros: Kun luku $1_{10}$ jaetaan luvulla $2$, niin jakojäännös on $1$, eli lisätään bitti binääärilukuun $b=0111 + 1\cdot 10^4 = 1011_2$. Suoritetaan kokonaisjako $1 : 2 = 0_{10}$. Algoritmin suoritus päättyy.</p>
-<p>Alla sama algoritmi on kirjoitettu funktioksi <code>IntToBinary(a)</code>, jolla parametrina annettu 10-järjestelmän luku voidaan muuttaa binääriluvuksi. Kutsutaan funktiota parametrin arvolla 23.</p>
+<p>Alla sama algoritmi on kirjoitettu funktioksi <code>IntToBinary(a)</code>, jolla parametrina annettu desimaalijärjestelmän luku voidaan muuttaa binääriluvuksi. Kutsutaan funktiota parametrin arvolla 23.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14286,7 +14376,7 @@ binääriluku b 10-järjestelmässä:  26
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Funktio 10-järjestelmän luvun a binäärilukuesityksen muodostamiseksi</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Funktio desimaalijärjestelmän luvun a binäärilukuesityksen muodostamiseksi</span>
 <span class="c1"># bitit ovat käänteisessä järjestyksessä, jotta taulukon indeksi vastaa kantaluvun 2 potenssia</span>
 <span class="k">def</span> <span class="nf">IntToBinary</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
